@@ -10,6 +10,10 @@ if (typeof PhoneGap !== "undefined") {
 		PhoneGap.exec("LocalNotification.addNotification", options);
 	};
 
+	LocalNotification.prototype.cancel = function(id) {
+		PhoneGap.exec("LocalNotification.cancelNotification", id);
+	};
+
 
 	PhoneGap.addConstructor(function() 
 	{

@@ -8,8 +8,7 @@
 
 
 @implementation LocalNotification
-- (void)addNotification:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
-{
+- (void)addNotification:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
 	NSLog(@"exec");
 	NSString *dateString = [options objectForKey:@"date"];
 	NSString *msg = [options objectForKey:@"message"];
@@ -39,5 +38,17 @@
 	
 	[[UIApplication sharedApplication] scheduleLocalNotification:notif];
 	[notif release];
+}
+
+- (void)cancelNotification:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
+	NSString *notificationId = [arguments objectAtIndex:0];
+	NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+	for (UILocalNotification *notification in notifications) {
+		NSString *notId = [notification.userInfo objectForKey:@"notificationId"];
+		if ([notificationId isEqualToString:notId]) {
+			NSLog(@"Notification Canceled");
+			[[UIApplication sharedApplication] cancelLocalNotification:notification];
+		}
+	}
 }
 @end
