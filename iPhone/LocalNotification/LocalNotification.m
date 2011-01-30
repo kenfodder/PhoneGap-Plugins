@@ -34,7 +34,7 @@
 	notif.userInfo = userDict;
 	
 	[[UIApplication sharedApplication] scheduleLocalNotification:notif];
-	NSLog(@"Notification Set: %@", date);
+	NSLog(@"Notification Set: %@ (%@)", date, notificationId);
 	[notif release];
 }
 
