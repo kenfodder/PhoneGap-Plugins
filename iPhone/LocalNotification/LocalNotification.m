@@ -1,0 +1,43 @@
+//
+//  LocalNotification.m
+//
+//  Created by Greg Allen on 01/29/2011.
+//
+
+#import "LocalNotification.h"
+
+
+@implementation LocalNotification
+- (void)addNotification:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+	NSLog(@"exec");
+	NSString *dateString = [options objectForKey:@"date"];
+	NSString *msg = [options objectForKey:@"message"];
+	NSString *action = [options objectForKey:@"action"];
+	NSString *notificationId = [options objectForKey:@"id"];
+	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+	[dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
+	NSDate *date = [dateFormatter dateFromString:dateString];
+	[dateFormatter release];
+	NSLog(@"%@", dateString);
+	NSLog(@"%@", date);
+	
+	UILocalNotification *notif = [[UILocalNotification alloc] init];
+	notif.fireDate = date;
+	notif.timeZone = [NSTimeZone defaultTimeZone];
+	
+	notif.alertBody = msg;
+	notif.alertAction = action;
+	notif.soundName = UILocalNotificationDefaultSoundName;
+	notif.applicationIconBadgeNumber = 1;
+	
+	NSDictionary *userDict = [NSDictionary dictionaryWithObject:notificationId 
+														 forKey:@"notificationId"];
+	notif.userInfo = userDict;
+	
+	[[UIApplication sharedApplication] scheduleLocalNotification:notif];
+	[notif release];
+}
+@end
