@@ -14,6 +14,8 @@
 	NSString *action = [options objectForKey:@"action"];
 	NSString *notificationId = [options objectForKey:@"id"];
 	
+	NSLog(@"%@", dateString);
+	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
 	[dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
@@ -27,7 +29,7 @@
 	notif.alertBody = msg;
 	notif.alertAction = action;
 	notif.soundName = UILocalNotificationDefaultSoundName;
-	notif.applicationIconBadgeNumber = 1;
+	//notif.applicationIconBadgeNumber = 1;
 	
 	NSDictionary *userDict = [NSDictionary dictionaryWithObject:notificationId 
 														 forKey:@"notificationId"];
