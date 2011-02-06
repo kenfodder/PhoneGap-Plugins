@@ -7,7 +7,19 @@ if (typeof PhoneGap !== "undefined") {
 		//message
 		//action
 		//id
-		PhoneGap.exec("LocalNotification.addNotification", options);
+        var defaults = {
+            date: false,
+            message: '',
+            hasAction: true,
+            action: 'View',
+            badge: 0,
+            id: 0
+        }
+        for (var key in defaults) {
+            if (typeof options[key] !== "undefined")
+                defaults[key] = options[key];
+        }
+		PhoneGap.exec("LocalNotification.addNotification", defaults);
 	};
 
 	LocalNotification.prototype.cancel = function(id) {
