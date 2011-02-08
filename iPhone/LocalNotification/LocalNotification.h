@@ -12,5 +12,6 @@
 }
 - (void)addNotification:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)cancelNotification:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)cancelAllNotifications:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 
 @end

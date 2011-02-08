@@ -52,4 +52,9 @@
 		}
 	}
 }
+
+- (void)cancelAllNotifications:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
+	NSLog(@"All Notifications cancelled");
+	[[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
 @end
